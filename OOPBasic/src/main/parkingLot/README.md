@@ -321,3 +321,57 @@ Sequence challenge: Payment verification
 In this section, you will help us in completing a sequence diagram for the payment verification of a customer at the exit panel.
 
 ![img_7.png](img_7.png)
+
+An activity diagram is a great way to visualize the flow of messages from one activity to the other in the system.
+There can be different activity diagrams that we can create for our parking lot system. For this lesson, we will create activity diagrams for the following two activities:
+
+The vehicle entering the parking lot
+Activity challenge: Customer pays the parking ticket
+
+The vehicle entering the parking lot
+
+states
+Initial state: The customer enters the parking lot.
+Final state: There are two final states present in this activity diagram, shown below:
+
+The customer receives the parking ticket through the system.
+There is no parking slot vacant, so the customer is denied access to the parking lot.
+
+Actions
+The customer arrives at the parking lot entrance and selects their vehicle type. They are assigned their dedicated
+parking spot according to their select vehicle type. The parking lot then informs us about the availability of that
+parking spot and allows access accordingly
+
+![img_8.png](img_8.png)
+
+Activity challenge: Customer pays the parking ticket
+
+![img_9.png](img_9.png)
+
+For simplicity, we aren’t defining getter and setter functions. The reader can assume that all class attributes are
+private and accessed through their respective public getter methods and modified only through their public method functions.
+
+First of all, we will define all the enumerations required in the parking lot. According to the class diagram,
+there are two enumerations used in the system i.e., PaymentStatus and AccountStatus.
+
+
+The first section of the parking lot system that we will work on is the ParkingSpot class, which will act as a base
+class for four different types of parking spots: handicapped, compact, large, and motorcycle. This will have an
+instance of the Vehicle class.
+
+Vehicle will be another abstract class, which serves as a parent for four different types of vehicles: car, truck, van, and motor cycle.
+
+The Account class will be an abstract class, which will have the actors, Admin and ParkingAttendant, as child classes
+
+This section contains the DisplayBoard and ParkingRate classes that only have the composition class with the ParkingLot class
+
+This section contains the Entrance and Exit classes, both of which are associated with the ParkingTicket class.
+
+The definition of the ParkingTicket class can be found below. This contains instancesof the Vehicle, Payment, Entrance and Exit classes
+
+Payment
+The Payment class is another abstract class, with the Cash and CreditCard classes as its child.
+This takes the PaymentStatus enumeration and the dateTime data type to keep track of the payment status and time
+
+The final class of the parking lot system is the ParkingLot class which will be a Singleton class,
+meaning the entire system will only have one instance of this class.
