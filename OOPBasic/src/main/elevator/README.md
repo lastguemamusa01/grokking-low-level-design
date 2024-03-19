@@ -181,4 +181,56 @@ LOOK
 
 LOOK is also known as the look-ahead SCAN algorithm. It is an improved version of the SCAN Algorithm. In this algorithm, the elevator car stops when there is no request in front of them. It will move again on the basis of the request. The advantage of this algorithm is that the elevator car does not always go till the end of the building but can change its direction in between. This algorithm can be implemented using a HashMap, TreeMap, or binary search tree data structure.
 
+sequence diagram
+
+Here are the steps in the elevator call interaction:
+
+The passenger presses the hall button to call the elevator.
+
+The hall button signals the elevator system to call an elevator car to the passenger's floor.
+
+The elevator system informs the dispatcher to select the best car.
+
+The dispatcher returns the best car to the system.
+
+The elevator system signals the elevator car to move to the passenger's floor.
+
+The elevator car signals the system when it arrives on the floor.
+
+The system signals the hall button that the elevator has arrived.
+
+The hall button is unpressed.
+
+The elevator system signals the doors to open.
+
+The door opens for the passenger.
+
+![alt text](image.png)
+
+
+![alt text](image-1.png)
+
+
+activity diagram
+
+The passenger arrives at the desired floor
+
+States
+
+Initial state: The passenger enters the elevator car.
+
+
+Final state: There are two final states present in this activity diagram. These are shown below:
+
+The passenger arrives at the destination floor.
+
+The passenger is not allowed due to max load/capacity issues.
+
+Actions
+
+The passenger enters the elevator car. The elevator car checks if the safety limits are met. The elevator car stops at other passengers’ floors. Finally, the elevator car reaches the passenger’s desired floor.
+
+![alt text](image-2.png)
+
+![alt text](image-3.png)
 
