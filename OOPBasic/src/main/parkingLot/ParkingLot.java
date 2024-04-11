@@ -39,7 +39,7 @@ public abstract class ParkingSpot {
   private boolean isFree;
   private Vehicle vehicle;
 
-  public boolean getIsFree();
+  public boolean getIsFree(){}
   public abstract boolean assignVehicle(Vehicle vehicle);
   public boolean removeVehicle() {
     // definition

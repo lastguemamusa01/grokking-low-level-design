@@ -269,3 +269,17 @@ Locker repository
 
 Package repository
 
+Sequence Diagram
+
+Based on the order above, the sequence diagram of package return in the Amazon Locker system is given below:
+
+![alt text](image.png)
+
+Activity Diagram for the Amazon Locker Service
+
+Product pickup
+
+![alt text](image-1.png)
+
+
+
