@@ -1,41 +1,9 @@
-/*
- * The MeetingScheduler class is the main class of the meeting scheduler and contains the organizer, which is responsible for scheduling 
- * and canceling a meeting as well as booking or releasing a room. It also checks if any meeting rooms are available for a meeting. 
- * In addition, there will be only one instance of the scheduler in the meeting scheduler. Therefore, the MeetingScheduler class will 
- * be a Singleton class to ensure that only one instance for the scheduler is created in the entire system.
- * 
- */
-
- public class MeetingScheduler {
-    private User organizer;
-    private Calendar calendar;
-    private List<MeetingRoom> rooms;
-
-    private static MeetingScheduler scheduler = null;
-
-    public static MeetingScheduler getInstance() {
-        if(scheduler == null) {
-            scheduler = new MeetingScheduler();
-        }
-        return scheduler;
-    }
-
-    public boolean scheduleMetting(List<User> user, Interval interval){}
-    public boolean cancelMeeting(List<User> user, Interval interval){}
-    public boolean bookRoom(MeetingRoom room, int numberOfPersons, Interval interval){}
-    public boolean releaseRoom(MeetingRoom room, Interval interval){}
-    public MeetingRoom checkRoomsAvailability(int numberOfPersons, Interval interval){}
-    
-}
-
-
-
 // The User class refers to a participant taking part in a meeting. A user can either accept or reject an invitation.
 
 public class User {
     private String name;
     private String email;
-    
+
     private void respondeInvitation(Notifiaction invite){
 
     }
@@ -88,6 +56,36 @@ public class Notification {
 
     public boolean sendNotification(User user){}
     public boolean cancelNotifiaction(User user){}
+
+}
+
+/*
+ * The MeetingScheduler class is the main class of the meeting scheduler and contains the organizer, which is responsible for scheduling
+ * and canceling a meeting as well as booking or releasing a room. It also checks if any meeting rooms are available for a meeting.
+ * In addition, there will be only one instance of the scheduler in the meeting scheduler. Therefore, the MeetingScheduler class will
+ * be a Singleton class to ensure that only one instance for the scheduler is created in the entire system.
+ *
+ */
+
+public class MeetingScheduler {
+  private User organizer;
+  private Calendar calendar;
+  private List<MeetingRoom> rooms;
+
+  private static MeetingScheduler scheduler = null;
+
+  public static MeetingScheduler getInstance() {
+    if(scheduler == null) {
+      scheduler = new MeetingScheduler();
+    }
+    return scheduler;
+  }
+
+  public boolean scheduleMetting(List<User> user, Interval interval){}
+  public boolean cancelMeeting(List<User> user, Interval interval){}
+  public boolean bookRoom(MeetingRoom room, int numberOfPersons, Interval interval){}
+  public boolean releaseRoom(MeetingRoom room, Interval interval){}
+  public MeetingRoom checkRoomsAvailability(int numberOfPersons, Interval interval){}
 
 }
 
