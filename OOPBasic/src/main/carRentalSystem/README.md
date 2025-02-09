@@ -363,3 +363,97 @@ The interviewer can introduce some additional requirements in the car rental sys
 Barcode Scanner: Each vehicle should have a unique barcode associated with it, and the system should be able to scan the barcode of every vehicl
 
 ![img_22.png](img_22.png)
+
+Sequence Diagram for the Car Rental System
+
+Sequence diagrams are a great way to understand the interactions between different entities and objects in the system. There can be different sequence diagrams that we can create for our car rental system. For the sake of this lesson, we will create sequence diagrams for the following two interactions:
+
+Vehicle reservation: The member reserves a vehicle.
+
+Sequence challenge: The member cancels their reservation.
+
+Vehicle reservation
+The sequence diagram for vehicle reservation should have the following actors and objects that will interact with each other:
+
+Actor: Member
+
+Objects: Catalog, Reservation, and Payment
+
+System
+
+![img_23.png](img_23.png)
+
+activity diagrams for the following two activities:
+
+Vehicle pickup
+
+Activity challenge: Vehicle return
+
+Vehicle pickup
+
+The states and actions that will be involved in this activity diagram are given below.
+
+States
+
+Initial state: A member with a vehicle booking comes to the rent-a-car reception to pick up the vehicle.
+
+Final state: The guest either successfully gets the vehicle or the system shows a reservation error.
+
+Actions
+
+The member with a vehicle reservation arrives at the rent-a-car reception. The receptionist validates the reservation and updates the vehicle status.
+
+![img_24.png](img_24.png)
+
+Code for the Car Rental System
+
+Car rental system classes
+
+In this section, we will provide the skeleton code of the classes designed in the class diagram lesson.
+
+Enumerations
+First, we will define all the enumerations required in the car rental system. According to the class diagram, there are seven enumerations used in the system, i.e., VehicleStatus, AccountStatus, ReservationStatus, PaymentStatus, VanType, CarType, and VehicleLogType
+
+Address, person, and driver
+This section contains the Address, Person, and Driver classes, where the first two classes are used as a custom data type.
+
+Account
+
+Account is an abstract class that represents the various people or actors that can interact with the system. There are two types of accounts: receptionist and customer
+
+Vehicle
+
+Vehicle will be another abstract class, which serves as a parent for four different types of vehicles: Car, Van, Truck, and MotorCycle
+
+Equipment
+
+Equipment is an abstract class, and this section represents different equipment: Navigation, ChildSeat, and SkiRack added in the reservation.
+
+Service
+
+Service is an abstract class, and this section represents different services: DriverService, RoadsideAssistance, and Wi-Fi added to the reservation
+
+Payment
+
+The Payment class is another abstract class, with the Cash and CreditCard classes as its child. This takes in the PaymentStatus enum to keep track of the payment status.
+
+Vehicle log and Vehicle reservation
+
+VehicleLog is a class responsible for keeping track of all the events related to a vehicle. VehicleReservation is a class responsible for managing the reservation of vehicles.
+
+Notification
+
+The Notification class is another abstract class responsible for sending notifications, with the SMSNotification and EmailNotification classes as its child
+
+Parking stall and fine
+
+ParkingStall is a class used to locate vehicles in the car rental branch while the Fine class represents the fine applied on payment.
+
+Search interface and vehicle catalog
+
+Search is an interface and the VehicleCatalog class is used to implement the search interface to help in vehicle searching. 
+
+Car rental system and car rental branch
+
+The CarRentalSystem class is the base class of the system that is used to represent the whole car rental system (or the top-level classes of the system). CarRentalBranch represents the single branch of the system.
+
