@@ -1,6 +1,6 @@
 A vending machine is an automated machine. The machine provides items, including snacks, chocolates, and beverages to consumers. There are multiple racks inside the vending machine with products on each rack. A user inserts money into the machine, selects the rack number from which they want to buy a product, and presses the button. A vending machine dispenses the product to the users based on the amount of money inserted and the selection of the product.
 
-questions
+States of the vending machine
 
 What function do the vending machines perform? Alternatively, how many different states can the vending machines have?
 
@@ -23,6 +23,14 @@ What should the system do if we pay more money than the product price?
 Can the credit card be used to input money or can only cash be used?
 
 bottom-up design approach
+
+We’ll design this vending machine problem using the bottom-up design approach. For this purpose, we’ll follow the steps below:
+
+Identify and design the smallest components first, like, a product in the machine.
+
+Use these small components to design bigger components, for example, the inventory.
+
+Repeat the steps above until we design the whole system, which is the vending machine.
 
 Design pattern
 
@@ -102,15 +110,16 @@ Generalization
 
 The customer and operator are two actors who interact with the vending machine. The consumer can only engage with the system to purchase a product. An operator can execute all the duties that a customer can, along with certain administrative responsibilities. Therefore, the “Operator” actor has a generalization relationship with the “Customer” actor.
 
+
 Include
 
 When a customer selects a product to buy, the system then searches for the product’s location and dispatches it. Therefore, the “Select products” use case has an include relationship with the “Search product” use case.
 
 When a customer selects a product to buy, the system then validates the money that the customer inserted and then dispenses the product. Therefore, the “Validate money” use case has an include relationship with the “Dispense product” use case.
 
-Extend
+When a customer selects a product to buy, the system then validates the money that the customer inserted and then returns the change if the amount is greater than the price of the purchased product. Therefore, the “Return change” use case has an include relationship with the “Validate money” use case.
 
-When a customer selects a product to buy, the system then validates the money that the customer inserted and then returns the change if the amount is greater than the price of the purchased product. Therefore, the “Return change” use case has an extend relationship with the “Validate money” use case.
+use case diagram
 
 ![alt text](image.png)
 
@@ -124,6 +133,14 @@ This problem follows the State design pattern since the vending machine changes 
 
 ![img.png](img.png)
 
+R2: The vending machine can be in one of these three states:
+
+There is no money inserted into the machine.
+
+Money is inserted into the machine.
+
+The machine gives out the product.
+
 According to the implementation of the State design pattern, all functions will be available in each state. However, it is not necessary that every function has a meaningful definition for that particular state.
 
 Product
@@ -132,9 +149,13 @@ The Product class contains the details of a particular product available in the 
 
 ![img_1.png](img_1.png)
 
+Rack
+
 The Rack class is used to identify the location of the product in the vending machine. Every rack has a specific rackNumber as an identifier.
 
 ![img_2.png](img_2.png)
+
+R1: There are different products placed at different positions in the vending machine.
 
 Inventory
 
@@ -142,12 +163,21 @@ The Inventory class will contain a list of products available at different posit
 
 ![img_3.png](img_3.png)
 
+R4: The admin can add a product to the machine or remove a product from the machine.
 
 Vending machine
 
 VendingMachine is a class that represents the whole vending machine. The State type variable is used to define the current state of the vending machine. The vending machine has a list of racks and amount stored in it. This class follows the Singleton design pattern, since there will only be one instance of the clas
 
 ![img_4.png](img_4.png)
+
+R6: The user can insert money into the machine in the form of cash.
+
+R8: The system should check whether the user has inserted the exact amount required for the specific product into the machine.
+
+R9: If the amount is greater than the product price, the system should change back the user and dispense the product.
+
+R10: If the amount is less than the product price, the system should display an error message, and return the money.
 
 Enumeration
 
@@ -239,3 +269,10 @@ The customer interacts with the vending machine and inserts money. The customer 
 
 ![img_12.png](img_12.png)
 
+Code for the Vending Machine
+
+The following code provides the definition of the enumeration used in the vending machine system
+
+State
+
+State is an interface and the NoMoneyInsertedState, MoneyInsertedState, and DispenseState classes implement the State interface

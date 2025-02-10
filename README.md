@@ -122,7 +122,74 @@ Data hiding can be divided into two primary components:
 
 When used together, they allow us to make efficient classes for further use in our application.
 
+Interview Tips
 
+How to prepare for success
+
+Substantial preparation is necessary to increase our chances of getting the job we’ve applied for. Depending on a candidate’s seniority and proficiency, different candidates need different amounts of times for interview preparation. For an average candidate, three to four months might be required to prepare for an object-oriented design interview.
+
+Mock interviews
+
+Mock interviews are a great way to prepare for the object-oriented design interviews. They involve pairing up with a friend and allowing them to ask questions. If a friend is not available, another strategy is to record ourselves and play the role of both the interviewer and interviewee. With this approach, we can critique ourselves or ask a knowledgeable friend for feedback.
+
+What to do during the interview
+
+The interviewer has probably asked many candidates the same question. Reproducing a run-of-the-mill design might not impress the interviewer.
+
+At the same time, an interview can be a stressful situation. Having a plan to tackle the problem might be a good strategy. Depending on the candidate, there can be multiple strategies to address a design problem. We suggest the following technique:
+
+Strategize, divide, and conquer
+
+We recommend including the following activities somewhere in the interview:
+
+![img_3.png](img_3.png)
+
+Clarify requirements
+
+The interviewer provides you with a design problem and a set of requirements. As an interview candidate, you need to ask the interviewer questions from to clarify the requirements and narrow down the scope of the problem so that it can be solved within 30–40 minutes. Clearly defined requirements can help visualize the design solution.
+
+Discuss the components
+
+You need to start solving the problem by identifying the components required for the design. The nouns in the requirements can translate as objects in our system. However, the verbs can be categorized as the methods or actions these objects can perform. As you categorize the requirements in this manner, it becomes easier to see the individual components. You should make sure to discuss your approach with the interviewer clearly so that they can understand your thought process.
+
+Discuss design patterns
+
+The best solution is one that is easily maintainable and extendable. Interviewers often ask follow-up questions about what design patterns can be used to improve the quality of the proposed solution. You should be well-versed in some of the most commonly occurring design patterns. It leaves a great impression on the interviewer if you can correctly use design patterns in the appropriate components.
+
+What not to do in an interview
+
+Here are a few things that you should avoid in an object-oriented design interview:
+
+- Don’t start building without a plan.
+- Don’t work in silence. It is encouraged to think out loud during the interview.
+- Don’t code the implementation of the system unless specifically asked. You only need to define your classes and methods.
+- If you don’t know something, don’t pretend to know it.
+
+Note: If an interviewer asks you about a design problem you haven’t heard of, you should just be honest and tell them so. The interviewer will either explain it to you, or they might change the question.
+
+How to manage interview stress
+
+Interview stress is very common, even if one is well-prepared and qualified for the job. Being in a situation where a stranger holds the power to make decisions regarding your future can trigger anxiety and nervousness and often lead to underperforming in the interview. However, there are a few strategies and techniques that you can apply to help you prepare for the day:
+
+- Practice self-care by getting the required amount of sleep.
+- Visualize yourself succeeding. Believe in your abilities and trust yourself to perform well.
+- Research as much as possible about the interview to avoid any surprises.
+- Remove any stressors that are not directly related to the interview, for example, clothes preparation and commuting to interview location. Prepare this beforehand to reduce the chances of last-minute anxiety.
+- In case of online interviews, make sure to download, set up, and perform a trial run for the required applications beforehand.
+
+Conclusion
+
+Conclude your journey with the course summary along with the feedback details.
+
+Congratulations on completing such a challenging course!
+
+We hope your new object-oriented design skills help you ace your next OOD interview. If you’d like to prepare further, we have several other interview preparation courses available on our platform. You may sharpen your algorithm analysis and design skills or improve your system design skills to position yourself for a role with greater technical responsibilities.
+
+We carefully selected our design problems from many different domains, and made an explicit effort to incorporate some unique aspects or issues of object-oriented design activity in each of them.
+
+Whatever you choose to do, remember that hands-on preparation is the best way to calm those pre-interview anxieties, and Educative is here to help every step of the way. Good luck with your interview and happy learning!
+
+Finally, we would like to thank you for taking the time to complete this course! We hope that it was a great experience for you. We look forward to hearing from you!
 
 
 

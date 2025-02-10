@@ -2,16 +2,31 @@ Blackjack is one of the most played games in casinos. In this game, several play
 
 At the start of the game, a bet is placed by a player, and then the dealer will create hands (Each player and the dealer get two cards each.). All players have both cards exposed while the dealer has one card exposed and one card hidden. Now, both the dealer and the player can hit (Draw an additional card.) a card and ensure that they should not get over 21. Anyone exceeding 21 points, busts and loses the bet. The player can stand pat (Stop taking cards) at any time. When a player stops taking cards, if the player has more points than the dealer but less than 22, they win the bet.
 
+Players in the game
 
 How many players can play Blackjack?
 
 Can players play the game against each other?
 
+Point dynamics
+
 Upto how many points can the player or the dealer hit the card?
 
 What will happen if the dealer and the player both get the same points?
 
+Card limit
+
 Is there a limit on the number of cards the player take?
+
+Design approach
+
+We are going to design this Blackjack game system using the bottom-up design approach. For this purpose, we will follow the steps below:
+
+Identify and design the smallest components first–the card, and player.
+
+Use these small components to design bigger components, for example, the deck and controller.
+
+Repeat the steps above until we design the whole Blackjack game.
 
 bottom-up design approach
 
@@ -129,7 +144,11 @@ The "Cancel membership" use case and "Block member" use case have an extend rela
 
 Whenever the account password is changed, the account is updated. Hence, the "Reset password" use case has an extend relationship with the "Update account" use case.
 
+use case diagram
+
 ![alt text](image.png)
+
+Class Diagram for the Online Blackjack Game
 
 Card
 
@@ -137,11 +156,15 @@ Card belongs to a suit and has a face value. The face value of the card is accor
 
 ![alt text](image-1.png)
 
+R3: Every card has points associated with it. The criteria to calculate the face value of the card is as follows:
+
 Deck
 
 Deck has 52 cards of four suits, and one suit contains nine number cards (2–10) and four face cards (King, Queen, Jack, and Ace). The Deck class contains a list of cards where the top card is in the first index.
 
 ![alt text](image-2.png)
+
+R2: The deck will consist of 52 cards in four suits, where each suit contains 13 cards: Ace, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, Jack, Queen, and King.
 
 Shoe
 
@@ -149,11 +172,19 @@ Shoe is a device to hold multiple Deck, and it has a shuffle operation.
 
 ![alt text](image-3.png)
 
+R1: The Blackjack game contains the shoe of cards which contains one or more decks of cards in it.
+
 Hand
 
 The Hand class represents a Blackjack hand used in this game which can contain multiple cards.
 
 ![alt text](image-4.png)
+
+R8: The player can draw the additional card if their hand has less than 21 points.
+
+R9: The dealer can draw an additional card if their hand is less than 17.
+
+R10: If a player or the dealer’s hand is more than 21, they bust and lose the game.
 
 Players
 
@@ -165,8 +196,9 @@ Dealer: They are primarily in charge of dealing cards and following the Blackjac
 
 ![alt text](image-5.png)
 
-Blackjack controller
+R4: There can be two types of users that can play the Blackjack game, i.e., dealer and the player.
 
+Blackjack controller
 
 The BlackjackController class validates the action(hit, stand) and responds accordingly.
 
@@ -184,7 +216,9 @@ The BlackjackGame class represents how we can play this game or its basic sequen
 
 ![alt text](image-8.png)
 
-Enumerations and custom data types#
+R1: The Blackjack game contains the shoe of cards which contains one or more decks of cards in it.
+
+Enumerations and custom data types
 
 Suit: We need to create an enumeration to keep track of the suit of the card, whether it is diamond, spade, heart, or club.
 
@@ -258,7 +292,50 @@ Player hit
 
 Player stand
 
-actvity diagram
+activity diagram
+
+![img.png](img.png)
+
+![img_1.png](img_1.png)
 
 ![alt text](image-15.png)
 
+Code for the Online Blackjack Game
+
+Enumerations and custom data type
+
+The following code provides the definition of the enumeration and custom data type used in the Blackjack game.
+
+Suit: We need to create an enumeration to keep track of the suit of the card, whether it is diamond, spade, heart, or club.
+
+AccountStatus: We need to create an enumeration to keep track of the status of the account, whether it is active, canceled, closed, blocked, or none.
+
+The Person class is used as a custom data type. The implementation of the Person class can be found below:
+
+Card
+
+This class contains the playing cards or cards used in the Blackjack game.
+
+Deck and shoe
+
+Shoe is a device to hold multiple Deck and a Deck has 52 cards of four suits. One suit contains nine number cards (2–10) and four face cards (King, Queen, Jack, and Ace).
+
+Hand
+
+The Hand class represents a Blackjack hand used in this game and contains multiple cards.
+
+Players
+
+The Player is an abstract class and the BlackjackPlayer and Dealer classes extend the Player class.
+
+BlackjackPlayer: They place the first wager and update the stake with winning and losing sums. They can choose between the hit and stand options.
+
+Dealer: They are primarily in charge of dealing cards and following the Blackjack rules.
+
+Blackjack controller and game view
+
+The BlackjackController class validates the actions (hit or stand) and responds accordingly. The BlackjackGameView class represents the game view.
+
+Blackjack game
+
+The BlackjackGame class represents how we can play this game or its basic sequence of play.

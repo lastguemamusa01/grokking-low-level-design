@@ -1,12 +1,26 @@
 A meeting scheduler software allows organizations to schedule and book meetings for a group of participants. The scheduler determines a meeting time and location depending on the availability of the participants. It ensures that most of the intended participants can effectively meet on the specified date and interval. The system allows users to book and cancel meetings. The invited participants promptly receive these notifications. The organizer can also add new participants to a meeting after the meeting is scheduled.
 
+Room assignment
+
 How does the system determine available rooms?
 
 How important is the capacity of a room when assigning a room for a meeting?
 
+Availability of attendees
+
 How does the system check the availability of the attendees?
 
 How does the system access the meeting information of all attendees?
+
+Design approach
+
+We'll design a meeting scheduler using the bottom-up design approach. For this purpose, we will follow the steps below:
+
+Identify and design the smallest components first, like an interval and meeting room.
+
+Use these small components to design additional components, for example, a meeting and a calendar.
+
+Repeat the steps above until we design the scheduler, which is the main component of the system.
 
 bottom-up design approach
 
@@ -70,7 +84,11 @@ The "Cancel meeting" use case has an include relationship with the "Send cancela
 
 The "Cancel meeting" use case also has an include relationship with the "Remove meeting from calendar" use case, since, once a meeting has been canceled, the interval time of all participant's users needs to be set free.
 
+use case diagram
+
 ![alt text](image.png)
+
+class diagram
 
 User
 
@@ -78,11 +96,15 @@ The User class is responsible for representing the personal information of a use
 
 ![alt text](image-1.png)
 
+R5: Users will receive an invite regardless of whether or not they are available at the interval. Users can respond to the invitation by either accepting or rejecting the invite.
+
 Interval
 
 The Interval class contains the start time and end time of a meeting. 
 
 ![alt text](image-2.png)
+
+R3: If not reserved already, each meeting room should have the ability to be booked, along with setting an interval, a start time, and an end time for the meeting.
 
 Meeting room
 
@@ -90,6 +112,9 @@ The MeetingRoom class contains the details of any particular room, such as its c
 
 ![alt text](image-3.png)
 
+R2: Each meeting room should have a specific capacity to accommodate the desired number of people.
+
+R3: If not reserved already, each meeting room should have the ability to be booked, along with setting an interval, a start time, and an end time for the meeting.
 
 Meeting
 
@@ -97,11 +122,15 @@ The Meeting class displays the meeting details, such as the participants, the me
 
 ![alt text](image-4.png)
 
+R3: If not reserved already, each meeting room should have the ability to be booked, along with setting an interval, a start time, and an end time for the meeting.
+
 Calendar
 
 The Calendar class keeps track of all the meetings that are scheduled or being held.
 
 ![alt text](image-5.png)
+
+R6: Each user should have access to a calendar that can be used to track the date and time, as well as to schedule or cancel meetings.
 
 Meeting scheduler
 
@@ -109,14 +138,17 @@ The MeetingScheduler class contains an organizer that is responsible for schedul
 
 ![alt text](image-6.png)
 
+R6: Each user should have access to a calendar that can be used to track the date and time, as well as to schedule or cancel meetings.
+
 Notification
 
 The Notification class will send a notification for an invitation to a user regarding any new meeting. It will also send a cancelation notification to a user as well, in case any meeting gets canceled or is postponed.
 
 ![alt text](image-7.png)
 
-Relationship
+R4: A notification should be sent to all the people invited to the meeting.
 
+Relationship
 
 Association
 
@@ -142,6 +174,8 @@ The MeetingRoom class is aggregated from the Interval class.
 
 ![alt text](image-10.png)
 
+class diagram
+
 ![alt text](image-11.png)
 
 Design pattern
@@ -150,7 +184,13 @@ In the meeting scheduler design, the entire system revolves around the scheduler
 
 sequence diagram
 
+Schedule a meeting: The meeting organizer schedules a meeting time for some attendees.
+
+Sequence challenge: The meeting organizer cancels a scheduled meeting.
+
 Schedule a meeting
+
+![img.png](img.png)
 
 ![alt text](image-12.png)
 
@@ -162,9 +202,51 @@ Activity diagram
 
 Schedule meeting
 
+The following states and actions will be involved in this activity diagram.
+
+States
+
+Initial state: The user opens the calendar.
+
+Final state: The notification and meeting details are sent to all the invited participants.
+
+Actions
+
+The user opens the calendar and selects an available slot. The user books a meeting room and the meeting details are sent to all invited users.
+
 ![alt text](image-14.png)
 
 Respond to an invite
 
 ![alt text](image-15.png)
+
+Code for the Meeting Scheduler
+
+User
+
+The User class refers to a participant taking part in a meeting. A user can either accept or reject an invitation. The definition of this class is given below:
+
+Interval
+
+The Interval class denotes the meeting interval (the start and end time).
+
+Meeting room
+
+The MeetingRoom class will represent the meeting rooms, each having a specific capacity, a boolean to check if a room is available, and a list of intervals for which the room is booked. The definition of the class is provided below:
+
+Calendar
+
+The Calendar class contains a list of meetings to keep track of all the scheduled meetings. The definition of this class is provided below:
+
+Meeting
+
+The Meeting class outlines the meeting details such as the number and list of participants, meeting time interval, and meeting room. It also has the option to add more participants
+
+Meeting scheduler
+
+The MeetingScheduler class is the main class of the meeting scheduler and contains the organizer, which is responsible for scheduling and canceling a meeting as well as booking or releasing a room. It also checks if any meeting rooms are available for a meeting. In addition, there will be only one instance of the scheduler in the meeting scheduler. Therefore, the MeetingScheduler class will be a Singleton class to ensure that only one instance for the scheduler is created in the entire system.
+
+Notification
+
+The Notification class is responsible for sending notifications to users about any new meetings or cancelations. The definition of this class is provided below:
 

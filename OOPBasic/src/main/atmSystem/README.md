@@ -390,6 +390,8 @@ Actors: Cardholder, Card issuer
 
 Objects: ATM and Printer
 
+![img_18.png](img_18.png)
+
 ![img_16.png](img_16.png)
 
 Activity Diagram for the ATM System
@@ -413,6 +415,10 @@ Actions
 The cardholder approaches the ATM, inserts their card, and enters their PIN. If the PIN is correct, they are allowed to perform a transaction. If the PIN is incorrect, the ATM returns the card. The cardholder then has the option to select from four different transactions. After completing their chosen transaction, the cardholder receives their card back from the ATM.
 
 ![img_17.png](img_17.png)
+
+Activity challenge: The cardholder performs an ATM cash withdrawal
+
+![img_19.png](img_19.png)
 
 Code for the ATM System
 

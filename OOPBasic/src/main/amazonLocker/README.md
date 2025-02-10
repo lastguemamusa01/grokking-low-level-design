@@ -38,7 +38,9 @@ If yes, will they get the same locker from which they picked up the item?
 
 How will the locker be assigned to the customer while returning an item?
 
-bottom-up design approach
+Design approach
+
+We will design this Amazon Locker service using the bottom-up design approach. For this purpose, we will follow the steps below:
 
 Identify and design the simple components first, like the locker and item.
 
@@ -105,20 +107,6 @@ Submit return request: To submit a return request to return a product
 
 Overdue notification: To notify if the date and time for the product pickup are passed
 
-Customer
-
-Enter code: To enter the code to open a locker
-
-Add product: To add a product to the locker
-
-Remove product: To pick up the product from the locker
-
-Delivery notification: To notify about the product location status
-
-Submit return request: To submit a return request to return a product
-
-Overdue notification: To notify if the date and time for the product pickup are passed
-
 Delivery guy
 
 Enter code: To enter the code to open a locker
@@ -151,6 +139,8 @@ Relationships
 
 Associations
 
+![img_14.png](img_14.png)
+
 Include
 
 When a “Customer” enters a code, the system then checks if the code is correct or not and finds the locker according to the code entered. Then, the system unlocks the door. This means that:
@@ -161,11 +151,14 @@ The "Validate code" use case has an include relationship with the "Find locker" 
 
 The " Find locker" use case has an include relationship with the "Lock/unlock door" use case.
 
+
 To return a product, the customer must go to the Amazon website and submit a return request. After the approval of the request, Amazon Locker will generate a code that will be used to access the locker.
 
 The "Submit return request" use case has an include relationship with the "Request notification" use case.
 
 The "Request notification" use case has an include relationship with the "Generate code" use case.
+
+use case diagram
 
 ![img.png](img.png)
 
@@ -183,11 +176,15 @@ The order placed by a customer is represented by the Order class. Every order ha
 
 ![img_2.png](img_2.png)
 
+R2: One or more items can be contained in one order. An order will be placed in a package before the delivery.
+
 Notification
 
 The notification is sent to the customer when an order is shipped. A Notification class has a customerId, orderId, and lockerId that specify the customer to whom the notification has to be sent, against the order the notification has to be sent, and the locker where the order has arrived, respectively. Moreover, this class contains a 6-digit code to open the locker
 
 ![img_3.png](img_3.png)
+
+R5: When the order package is delivered to the locker location specified by the customer, a 6-digit code will be sent to the customer to open the locker.
 
 Package and locker package
 
@@ -199,17 +196,27 @@ The representation of the Package and LockerPackage classes
 
 ![img_4.png](img_4.png)
 
+R2: One or more items can be contained in one order. An order will be placed in a package before the delivery.
+
+R6: The package will be kept or placed inside the locker for three days only.
+
+R7: If the customer does not pick up the package from their locker within three days, the refund process will be initiated, and the customer won’t be allowed to pick up the package any longer.
+
 Locker
 
 Since we are designing a locker service problem, we should have a Locker class. Every locker has its ID, size, and reference to the location ID. Moreover, the Locker class has a member, lockerState, to specify the present state of the locker. We can add a package to the locker and remove a package from the locker.
 
 ![img_5.png](img_5.png)
 
+R4: The locker is assigned to the customer based on the size of the locker.
+
 Locker location
 
 A locker is kept at the location. Since a location may contain more than one locker, we have a list of lockers in the LockerLocation class. The longitude and latitude are used to store the location. According to the requirements, the specific locker is opened only for a particular period of time and the customer can only get a package from the locker if they visit the locker during the location timing. The openTime and closeTime variables store information about the timings applicable to the particular locker location.
 
 ![img_6.png](img_6.png)
+
+R9: Amazon Locker Service
 
 Locker service
 
@@ -224,6 +231,10 @@ LockerStatus: The locker status describes the current status of the locker, whet
 LockerSize: The locker size expresses the size of the locker, whether it is extra small, small, medium, large, extra large, or double extra large.
 
 ![img_10.png](img_10.png)
+
+R3: There can be different sizes of lockers like extra small, small, medium, large, extra large, and double extra large.
+
+R13: When the customer picks up the order package from the locker, the locker’s state is changed to closed and the customer will no longer be able to open the locker with the given code.
 
 Association
 
@@ -273,13 +284,48 @@ Sequence Diagram
 
 Based on the order above, the sequence diagram of package return in the Amazon Locker system is given below:
 
+![img_15.png](img_15.png)
+
 ![alt text](image.png)
 
 Activity Diagram for the Amazon Locker Service
 
 Product pickup
 
+The states and actions that will be involved in this activity diagram are provided below.
+
+States
+
+Initial state: A customer who has ordered a product from Amazon comes to the Amazon Locker to pick up the product.
+
+Final state: The customer either successfully gets the product or the system shows an incorrect code error.
+
+Actions
+
+The customer arrives at the Amazon Locker and enters the code. The system validates the code and opens the locker.
+
+
 ![alt text](image-1.png)
+
+Enumerations
+
+First, we will define all the enumerations used in the Amazon Locker service. According to the class diagram, there are two enumerations in the system, i.e., LockerSize and LockerState The code to implement these enumerations
+
+Item and Order
+
+The Item class represents the single item while the Order represents the order placed by the customer and can contain the list of items.
+
+Package and LockerPackage
+
+When an order is packed, it is represented by the Package , and the package which is contained in the locker is represented by the LockerPackage class
+
+Locker and LockerLocation
+
+The Locker is the most important class of the system and a LockerLocation can contain multiple Locker instances
+
+LockerService and Notification
+
+The final class of an Amazon Locker service is the LockerService class which will be singleton class, which means that the entire system will have only one instance of this class. The following code provides the definition of the LockerService and Notification classes used in the Amazon Locker service:
 
 
 

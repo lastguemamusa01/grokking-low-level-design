@@ -411,3 +411,101 @@ Note: We have already discussed the inheritance relationship between classes in 
 Class diagram of Amazon
 
 ![img_24.png](img_24.png)
+
+Design pattern
+
+In the Amazon online shopping system, we can use the Factory design pattern to maintain different orders and the bill generation process based on the products selected by a customer.
+
+We know that in the Amazon-online shopping system, various items are on sale, or items can be bought using special coupons that give different percentage discounts. To effectively calculate prices for different discount types, we can use the Strategy design pattern. This pattern allows us to design a separate strategy or algorithm to calculate the prices for each discount type.
+
+Additional requirements
+
+The interviewer can introduce some additional requirements in the Amazon shopping system, or they can ask some follow-up questions. Let’s see some examples of additional requirements:
+
+Wish list: Only users with an account (an authenticated user) can add a product to their wishlist. The WishList class can be used to move products to a cart and also check if it is currently available:
+
+![img_25.png](img_25.png)
+
+Discount: A discount will be applied to the payment depending on special events such as Christmas, Black Friday, and so on. The class diagram provided below shows the relationship of Discount with the Payment class:
+
+![img_26.png](img_26.png)
+
+Sequence Diagram for the Amazon Online Shopping System
+
+![img_27.png](img_27.png)
+
+![img_28.png](img_28.png)
+
+Sequence challenge: Search and add items to the cart
+
+![img_29.png](img_29.png)
+
+Activity Diagram for the Amazon Online Shopping System
+
+A customer buying a product
+
+The following are the states and actions that will be involved in this activity diagram.
+
+States
+
+Initial state: The customer opens Amazon.
+
+Final state: The customer proceeds with checkout.
+
+Actions
+
+The customer opens the website. They either search or browse the website, select a product, and proceed to buy it.
+
+![img_30.png](img_30.png)
+
+Activity challenge: The customer receives their order
+
+![img_31.png](img_31.png)
+
+![img_32.png](img_32.png)
+
+Constants
+
+The following code provides the definition of the various enums and custom data types being used in the Amazon design:
+
+Account
+
+The Account class refers to an account of a customer on Amazon and contains the personal details of a customer, such as their name, shipping address, credit card information, etc. It also provides authenticated users and admins with the functionality to add products, product reviews, and reset passwords. 
+
+Admin
+
+The Admin class refers to a person from the administration of Amazon that can block users, and add, modify, or delete product categories.
+
+Customer
+
+The Customer class is an abstract class that has the AuthenticatedUser and Guest classes derived from it
+
+Product, product category, and product review
+
+Shopping cart and cart items
+
+The ShoppingCart and CartItem classes are used to add items to the shopping cart, update the quantities, and send the list of items to checkout.
+
+Order and order log
+
+The Order class is responsible for making the payment, updating the order status, and sending the particular order to shipment. The OrderLog class creates the log of the order and is referenced in the Order class to keep track of all the orders. 
+
+Shipment and shipment log
+
+The Shipment class keeps track of all the major details of the order’s dispatch and creates the shipment record using the ShipmentLog class. 
+
+Payment
+
+The Payment class is another abstract class with the ElectronicBankTranfer, CreditCard, and Cash classes as its child classes. This takes the PaymentStatus enum to keep track of the payment status.
+
+Notification
+
+The Notification class is responsible for sending notifications to customers about the order and shipment status either via SMS or email. Since you can extend this by adding more options, the Notification class will be an abstract class.
+
+Search and catalog
+
+The Catalog class contains the product information and implements the Search interface class to enable the search functionality based on the given criteria (name and category of product).
+
+
+
+

@@ -73,13 +73,19 @@ R13: If the book is currently not available, then the member should be able to r
 
 R14: The system should allow the user to search a book by its title, author name, subject, or publication date.
 
+Use Case Diagram for the Library Management System
+
 System is library
 
 Actors
 
+Primary actors
+
 Member: This actor is the client of the library. It can search, reserve, renew, or return a book and modify its library membership.
 
 Librarian: It acts as an admin in a library management system. It can add or remove a book as well as modify the status of members or books. It can also issue and return books.
+
+Secondary actors
 
 System: It can send alerts related to reservations and late returns of books.
 
@@ -170,6 +176,8 @@ We can search for a book with the title, subject name, author name, or publicati
 
 Associations
 
+![img_25.png](img_25.png)
+
 Include
 
 - To add a new book, we add its copies (book items), so the "Add Book" use case has an include relationship with the "Add book item" use case.
@@ -190,9 +198,13 @@ Extend
 
 - Whenever a member returns a book, the librarian will check if the submission is late or not and will ask the member to pay for a fine if it exists, so the "Return book" use case has an extend relationship with "Pay fine" use case.
 
+use case diagram
+
 ![img.png](img.png)
 
 class diagram
+
+Book and book item
 
 The Book class represents the conceptual essence of a book. This includes the metadata or descriptive information about a book, which isn’t specific to any single physical copy. It’s a blueprint that captures the shared attributes of all instances or copies of the book as they exist in the world or within the library’s collection.
 
@@ -200,10 +212,19 @@ The BookItem class, on the other hand, represents a specific physical or digital
 
 ![img_1.png](img_1.png)
 
+R3: Every book should have an associated ISBN, title, author name, subject, and publication date.
+
+R4: There can be multiple copies of the book. Each copy will be recognized as a book item.
+
+Rack
+
 We have seen a complex object Rack that was defined in the BookItem class. Now, we are going to create a Rack class. This class is used to identify the physical location of any book item in the library. Every rack has a specific rack number assigned to it and a location identifier to represent the exact location of the book item in the library.
 
-
 ![img_2.png](img_2.png)
+
+R2: Every book is supposed to have a unique identification number and other details including a rack number to help locate the book physically.
+
+Person and author
 
 The Person class is used to store information related to a person like a name, email, phone number, etc. In the person class, there is an object of the Address class to specify the person’s address.
 
@@ -211,17 +232,29 @@ There is also a class named Author that stores the author’s data like the auth
 
 ![img_3.png](img_3.png)
 
+User, librarian, and library member
+
 User is an abstract class that represents the system users of LMS. There can be two types of users: librarians and library members.
 
 The Librarian class is a derived class of the User class. This class is responsible for adding a new book item and blocking or unblocking any library member.
 
 Similar to the Librarian class, the Member class also extends the User class. The variable totalBooksCheckedout is used to store the number of books a certain member has already checked out. A member can reserve a book, return a book, or renew an already reserved book.
 
+Since the Librarian and Member classes extend the User class
+
 ![img_4.png](img_4.png)
+
+R5: There can be two types of users: the librarian and the members.
+
+R11: The system should allow the user to renew the reserved book.
+
+Library card
 
 To manage each user’s library card information, we have a LibraryCard class. Each library card has an identification number, issue date, and information on whether or not it is active
 
 ![img_5.png](img_5.png)
+
+R6: Every user must have a library card with a unique card number.
 
 Book reservation
 
@@ -229,9 +262,15 @@ Book reservation is one of the most important requirements of the library manage
 
 ![img_6.png](img_6.png)
 
+R10: The system should be able to keep a record of who issued or reserved a particular book and on which date.
+
+Book lending
+
 Similar to book reservations, book lending is also a part of the system since the BookLending class manages the process of checking out the book items. The information like the book lending date, due date, return date, etc. is being handled or processed in this class.
 
 ![img_7.png](img_7.png)
+
+Notification
 
 Notification is an abstract class. If the book is not returned within the due date, then the class notification is responsible for informing library members by sending a notification. Every notification has an ID, creation date, and content in it. The notification can be either a postal notification or an email notification.
 
@@ -239,19 +278,27 @@ The PostalNotification class requires the address of the library member to send 
 
 ![img_8.png](img_8.png)
 
+R12: The system should send a notification if the book is not returned within the due date.
+
+Search and catalog
+
 Search is one of the most important functionalities of the system. Search is the interface that allows the user to search for any book and return the list of books upon searching by any of the following methods:
 
-Search a book by its title.
+- Search a book by its title.
 
-Search a book by its author name.
+- Search a book by its author name.
 
-Search a book by its subject.
+- Search a book by its subject.
 
-Search a book by its publication date.
+- Search a book by its publication date.
 
 Catalog is a class where the search functionality is implemented. In each catalog, the books are sorted according to one of the given search techniques, i.e., on the basis of the book’s title, author, subject, or publication date.
 
 ![img_9.png](img_9.png)
+
+R14: The system should allow the user to search a book by its title, author name, subject, or publication date.
+
+Library
 
 The Library class is the base class of the system which is used to represent the library. It is a central part of the organization. This class consists of two members: name and Address. The string type name is used to store the name of the library, while the complex object Address is to store the complete address location of the library
 
@@ -280,37 +327,37 @@ Relationship between the classes
 
 One-way association
 
-The User has a one-way association with BookItem and BookReservation.
+- The User has a one-way association with BookItem and BookReservation.
 
-Both BookReservation and BookLending have a one-way association with the BookItem.
+- Both BookReservation and BookLending have a one-way association with the BookItem.
 
 ![img_13.png](img_13.png)
 
 Two-way association
 
-Author has a two-way association with Book.
+- Author has a two-way association with Book.
 
-Both Rack and Librarian have a two-way association with BookItem.
+- Both Rack and Librarian have a two-way association with BookItem.
 
-The Notification has a two-way association with BookLending and BookReservation.
+- The Notification has a two-way association with BookLending and BookReservation.
 
-The BookLending has a two-way association with BookReservation and User.
+- The BookLending has a two-way association with BookReservation and User.
 
 ![img_14.png](img_14.png)
 
 Composition
 
-Library is composed of BookItem.
+- Library is composed of BookItem.
 
-User is composed of LibraryCard.
+- User is composed of LibraryCard.
 
 ![img_15.png](img_15.png)
 
 Aggregation
 
-The Catalog class contains the Book class.
+- The Catalog class contains the Book class.
 
-The BookItem class contains the Book class.
+- The BookItem class contains the Book class.
 
 ![img_16.png](img_16.png)
 
@@ -318,11 +365,13 @@ Inheritance
 
 The following classes show an inheritance relationship:
 
-Both Librarian and Member classes extend the User class.
+- Both Librarian and Member classes extend the User class.
 
-Both EmailNotification and PostalNotification classes extend the Notification class.
+- Both EmailNotification and PostalNotification classes extend the Notification class.
 
-The Catalog class implements the Search interface.
+- The Catalog class implements the Search interface.
+
+class diagram
 
 ![img_17.png](img_17.png)
 
@@ -348,24 +397,62 @@ The fine payment functionality follows the Decorator pattern as the fine keeps o
 
 ![img_19.png](img_19.png)
 
+Sequence Diagram for the Library Management System
+
 Sequence diagrams are a great way to understand the interactions between different entities and objects in the system. There can be different sequence diagrams that we can create for our library management system.
 
-Lend a book: The member requests the librarian to lend them a book.
+- Lend a book: The member requests the librarian to lend them a book.
+
+![img_26.png](img_26.png)
 
 ![img_20.png](img_20.png)
 
-Sequence challenge: The member returns a book.
+- Sequence challenge: The member returns a book.
 
 ![img_21.png](img_21.png)
 
+Activity Diagram for the Library Management System
 
 Activities diagrams are a great way to visualize the flow of messages from one activity to the other in the system.
 
 Check out a book from the library.
 
+The following are the states and actions involved in this activity diagram.
+
+States
+
+Initial state: The member selects a book and initiates checkout.
+
+Final state: There are two final states present in this activity diagram, shown below:
+
+- The member completes the checkout process successfully, and the book will be allocated to the member.
+
+- An error occurred during the checkout process due to book unavailability or issue book limit exceeds.
+
+Actions
+
+The member selects a book and enters the ID. The system will perform a few checks like book availability, the max limit of the member, and book reservations. If all checks are clear, then the book will be issued. Otherwise, the system will show an error message.
+
+
 ![img_22.png](img_22.png)
 
 Return a book to the library.
+
+The following are the states and actions involved in this activity diagram.
+
+States
+
+Initial state: The member returns a book back to the library.
+
+Final state: There are two final states present in this activity diagram, shown below:
+
+- The member completes the return process and pays a fine, if any.
+
+- The system allocates a book to someone who reserved that book.
+
+Actions
+
+The member enters the book ID. The system will check if the book is returned within the due date, and the member will pay a fine, if any. Then, the book will be allocated to someone who has reserved the book.
 
 ![img_23.png](img_23.png)
 
@@ -373,3 +460,36 @@ Activity challenge: Renew a book from the library.
 
 ![img_24.png](img_24.png)
 
+Code of Library Management System
+
+Enumerations
+
+First, we will define all the enumerations required in the library management system. According to the class diagram, there are four enumerations used in the system: BookFormat, BookStatus, ReservationStatus, and AccountStatus.
+
+Address and person
+
+This section contains the code for Address and Person classes where the Person class is composed of an Address class. 
+
+User
+
+The User is an abstract class that represents the various people or actors that can interact with the system. Since there are two types of users, the librarian and the library member, the user can either be a Librarian or a Member.
+
+Book reservation, book lending and fine
+
+This component shows the implementation of BookReservation, BookLending, and Fine classes. These classes will be responsible for managing reservations against books, managing reservations, and calculating fine on books.
+
+Book and rack
+
+The Book is an abstract class and BookItem represents each copy of the book. For example, if there are two copies of the same book then there would only be one Book object and two BookItem objects. 
+
+Notification
+
+The Notification class is another abstract class responsible for sending notifications to the users, with the PostalNotification and EmailNotification classes as its child classes
+
+Search and catalog
+
+The Search is an interface used in the efficient searching of library books by various methods, and the Catalog class is used to implement the search interface to help in book searching
+
+Library
+
+The final class of LMS is the Library class which will be a Singleton class, meaning the entire system will have only one instance of this class. 

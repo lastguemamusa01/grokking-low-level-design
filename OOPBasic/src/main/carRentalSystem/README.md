@@ -32,6 +32,14 @@ Payment flexibility
 
 Design approach
 
+We’ll design this car rental system using the bottom-up design approach. For this purpose, we will follow the steps below:
+
+Identify and design the smallest components, such as a vehicle, vehicle reservation, vehicle log, etc.
+
+Use these small components to design bigger components, such as building a car rental system that can be composed of multiple vehicles.
+
+Repeat the steps above until we design the whole system.
+
 bottom-up design approach
 
 Design pattern
@@ -163,8 +171,6 @@ Use case diagrams
 
 class diagram
 
-bottom-up approach
-
 Address and person
 
 The Address is a custom data type that is required to store any address. The Address contains attributes like a street address, city, state, etc. In the car rental system, this class will be used to specify the address of any person or a car rental location or branch. The Person class stores information related to a person like a name, email, phone number, and address. In the Person class, there is an object of the Address type to specify the person’s address
@@ -176,6 +182,8 @@ Account
 Account is an abstract class that is used to store the account information of a person. This class has members like account ID, password, the status of an account, etc. There can be two types of accounts, i.e., customer and receptionist. The Customer class represents the customers who reserve the vehicle for themselves, while the Receptionist class represents the receptionist in the car rental system. Both of them can create any vehicle reservation and can cancel the reservation as well.
 
 ![img_2.png](img_2.png)
+
+R1: There can be two types of users in the car rental system, i.e., customers and receptionists.
 
 Driver
 
@@ -189,11 +197,15 @@ Our car rental system should have a vehicle object according to the requirements
 
 ![img_4.png](img_4.png)
 
+R2: The system should handle multiple types of vehicles. Initially, the system should cater to the following vehicles: cars, trucks, vans, and motorcycles.
+
 Equipment
 
 Equipment is an abstract class that stores information about different types of equipment that can be added to the reservation. For simplicity, we’ll assume three types of equipment, i.e., navigation, child seat, and ski rack. The class diagram for Equipment and its subclasses
 
 ![img_5.png](img_5.png)
+
+R8: The system should allow the users to add equipment to the reservations like a ski rack, child seat, and navigation.
 
 Service
 
@@ -201,11 +213,15 @@ Service is an abstract class that represents the services provided to the custom
 
 ![img_6.png](img_6.png)
 
+R9: The system should allow the users to add services to the reservations like a driver, Wi-Fi, and roadside assistance.
+
 Notification
 
 Notification is an abstract class responsible for sending notifications to customers. Every notification has an ID, creation date, and content in it. The notification can either be an SMS notification or an email notification. The SMSNotification class requires the phone number of the customer to send a notification, while EmailNotification is sent to the email address of the customer
 
 ![img_7.png](img_7.png)
+
+R10: The system should send a notification to the customer and generate a fine if the vehicle is not returned within the due date.
 
 Parking stall
 
@@ -213,17 +229,23 @@ Each car rental location has parking stalls where the vehicles are parked. Each 
 
 ![img_8.png](img_8.png)
 
+R13: Every branch of the car rental system should have parking stalls to park the vehicles.
+
 Vehicle log
 
 VehicleLog is a class that is used to keep track of all the events related to a vehicle. Every vehicle log has its ID, log type, description, and creation date
 
 ![img_9.png](img_9.png)
 
+R7: To keep track of all events related to the vehicle, the system should maintain a vehicle log.
+
 Vehicle reservation
 
 Vehicle reservation is one of the most important requirements of the car rental system. To fulfill this functionality, we have a VehicleReservation class. This class is responsible for managing the vehicle reservation status of vehicles. The customer can add any equipment or service at the time of reservation as well.
 
 ![img_10.png](img_10.png)
+
+R4: The system should be able to keep a record of who reserved a particular vehicle and on which date the vehicle was issued.
 
 Payment
 
@@ -237,6 +259,7 @@ The system needs the Fine class to calculate the fine on the vehicle reservation
 
 ![img_12.png](img_12.png)
 
+R10: The system should send a notification to the customer and generate a fine if the vehicle is not returned within the due date.
 
 Search interface and vehicle inventory class
 
@@ -250,11 +273,15 @@ The VehicleCatalog is a class where the search function is implemented. In each 
 
 ![img_13.png](img_13.png)
 
+R11: The system should allow the user to search vehicles by type, model, or seat capacity.
+
 Car rental system and branch
 
 CarRentalSystem is the main class of the car rental system and is the central part of the design. There can be multiple branches and locations of the car rental system. The CarRentalBranch class will represent each of these branches.
 
 ![img_14.png](img_14.png)
+
+R12: A system should be able to manage the multiple branches of the car rental system.
 
 Enumerations
 
@@ -280,7 +307,10 @@ The list of enumerations required in the car rental system is provided below:
 
 ![img_15.png](img_15.png)
 
+R3: There can be multiple subtypes for vehicles. The car type can be economy, luxury, standard, and compact. The van type can be passenger or cargo type. Moreover, the motorcycle type can be cruiser, touring or sports. The truck type can be light, medium, or high-duty.
+
 Association
+
 The class diagram has the following association relationships.
 
 One-way association
@@ -381,7 +411,13 @@ Objects: Catalog, Reservation, and Payment
 
 System
 
+![img_25.png](img_25.png)
+
 ![img_23.png](img_23.png)
+
+Sequence challenge: Cancel reservation
+
+![img_26.png](img_26.png)
 
 activity diagrams for the following two activities:
 
@@ -404,6 +440,10 @@ Actions
 The member with a vehicle reservation arrives at the rent-a-car reception. The receptionist validates the reservation and updates the vehicle status.
 
 ![img_24.png](img_24.png)
+
+Activity challenge: Vehicle return
+
+![img_27.png](img_27.png)
 
 Code for the Car Rental System
 

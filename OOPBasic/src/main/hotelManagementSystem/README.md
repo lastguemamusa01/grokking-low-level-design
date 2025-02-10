@@ -453,43 +453,13 @@ Objects: Catalog, Booking, Room, and Payment
 
 System
 
-Here’re the steps in the book room interaction:
-
-The guest searches for a room based on some price and style.
-
-The catalog returns a list of rooms.
-
-The guest selects a room they wish to book.
-
-If the room is available:
-
-The guest creates a booking for the room.
-
-The booking fetches the booking price for the room.
-
-The guest is informed that the booking is ready for payment.
-
-The guest initiates a payment against the booking price.
-
-The payment is processed, and the guest is informed of the status.
-
-If the payment is successful:
-
-The guest is informed that the payment has succeeded.
-
-The system is informed that payment is complete.
-
-The system updates the room status to reserved.
-
-Else if the payment is unsuccessful:
-
-The guest is informed that the payment has failed.
-
-Else if the room is unavailable:
-
-The system informs the guest that the room is unavailable.
+![img_22.png](img_22.png)
 
 ![img_20.png](img_20.png)
+
+Sequence challenge: Check out
+
+![img_23.png](img_23.png)
 
 Activity Diagram for the Hotel Management System
 
@@ -504,8 +474,8 @@ Hotel check-in
 The following are the states and actions that will be involved in this activity diagram.
 
 States
-Initial s
-tate: A guest with a room booking comes to the hotel reception for check-in.
+
+Initial state: A guest with a room booking comes to the hotel reception for check-in.
 
 Final state: The guest successfully checked in at the hotel.
 
@@ -514,6 +484,10 @@ Actions
 The guest has a room booked and arrives at the hotel reception. The receptionist validates the booking and checks if the room is ready. The receptionist then issues room keys and updates the room status.
 
 ![img_21.png](img_21.png)
+
+Activity challenge: Cancel room booking
+
+![img_24.png](img_24.png)
 
 Code for the Hotel Management System
 
